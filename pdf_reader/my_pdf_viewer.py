@@ -23,7 +23,7 @@ def open_pdf():
 
             # Enable the buttons and set entry value to 1
             btn_previous.config(state=tk.NORMAL)
-            btn_down.config(state=tk.NORMAL)
+            btn_next.config(state=tk.NORMAL)
             entry_integer.delete(0, tk.END)
             entry_integer.insert(0, "1")
             pages_label.config(text=f"/ {total_pages}")
@@ -208,19 +208,19 @@ nav_frame.grid(row=2, column=0, padx=(10, 0), pady=(5, 5))
 
 # Integer input entry
 entry_integer = tk.Entry(nav_frame, width=6)
-entry_integer.grid(row=0, column=0, sticky="e")#padx=(20, 30))
+entry_integer.grid(row=0, column=0, padx=(20, 30))
 entry_integer.insert(0, 0)
 
 # Label for pages
 pages_label = tk.Label(nav_frame, text=f"/ {total_pages}")
-pages_label.grid(row=0, column=1, sticky="w")#columnspan=2, padx=(40, 0))
+pages_label.grid(row=0, column=0, columnspan=2, padx=(40, 0))
 
 # Change page buttons
 btn_previous = tk.Button(nav_frame, text="Previous", command=previous_page)
 btn_previous.grid(row=1, column=0)#, padx=(20, 50))
 
-btn_down = tk.Button(nav_frame, text="Next", command=next_page)
-btn_down.grid(row=1, column=1)#0, columnspan=2, padx=(70, 0))
+btn_next = tk.Button(nav_frame, text="Next", command=next_page)
+btn_next.grid(row=1, column=1)#0, columnspan=2, padx=(70, 0))
 
 # Canvas for display
 display_panel = tk.Canvas(window, width=0, bg="gray", scrollregion=(0, 0, 0, 0))
