@@ -14,7 +14,7 @@ def open_pdf():
     global pdf_file, total_pages
 
     # Open the PDF file     initialdir=os.getcwd(), 
-    file = filedialog.askopenfilename(title="Select a PDF", defaultextension=".pdf", filetype=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
+    file = filedialog.askopenfilename(title="Select a PDF", defaultextension=".pdf", filetypes=(("PDF Files", "*.pdf"), ("All Files", "*.*")))
 
     if file:
         try: # Try to open the PDF file
@@ -22,8 +22,8 @@ def open_pdf():
             total_pages = pdf_file.page_count
 
             # Enable the buttons and set entry value to 1
-            button_up.config(state=tk.NORMAL)
-            button_down.config(state=tk.NORMAL)
+            btn_previous.config(state=tk.NORMAL)
+            btn_down.config(state=tk.NORMAL)
             entry_integer.delete(0, tk.END)
             entry_integer.insert(0, "1")
             pages_label.config(text=f"/ {total_pages}")
@@ -159,7 +159,7 @@ window.geometry(f"{defaultWidth }x{defaultHeight }+{x_coordinate}+{y_coordinate}
 # # Set app icon dynamically
 script_directory = os.path.dirname(os.path.realpath(__file__))
 icon_path = os.path.join(script_directory, "assets", "pdf512.ico" if os.name == "nt" else "pdf512.icns")
-window.iconbitmap(default=icon_path)
+window.iconbitmap(bitmap=icon_path)
 
 # Make rows and columns resizable
 window.rowconfigure(1, weight=1)
@@ -204,23 +204,23 @@ thumbnail_panel.bind("<MouseWheel>", lambda event: on_mousewheel(event, thumbnai
 
 # Frame for arrows, input, and label
 nav_frame = tk.Frame(window, width=300)
-nav_frame.grid(row=2, column=0, pady=(5, 5))
+nav_frame.grid(row=2, column=0, padx=(10, 0), pady=(5, 5))
 
 # Integer input entry
 entry_integer = tk.Entry(nav_frame, width=6)
-entry_integer.grid(row=0, column=0, padx=(20, 30))
+entry_integer.grid(row=0, column=0, sticky="e")#padx=(20, 30))
 entry_integer.insert(0, 0)
 
 # Label for pages
 pages_label = tk.Label(nav_frame, text=f"/ {total_pages}")
-pages_label.grid(row=0, column=0, columnspan=2, padx=(40, 0))
+pages_label.grid(row=0, column=1, sticky="w")#columnspan=2, padx=(40, 0))
 
-# Buttons with arrows
-button_up = tk.Button(nav_frame, text="Previous", command=previous_page)
-button_up.grid(row=1, column=0, padx=(20, 50))
+# Change page buttons
+btn_previous = tk.Button(nav_frame, text="Previous", command=previous_page)
+btn_previous.grid(row=1, column=0)#, padx=(20, 50))
 
-button_down = tk.Button(nav_frame, text="Next", command=next_page)
-button_down.grid(row=1, column=0, columnspan=2, padx=(70, 0))
+btn_down = tk.Button(nav_frame, text="Next", command=next_page)
+btn_down.grid(row=1, column=1)#0, columnspan=2, padx=(70, 0))
 
 # Canvas for display
 display_panel = tk.Canvas(window, width=0, bg="gray", scrollregion=(0, 0, 0, 0))
