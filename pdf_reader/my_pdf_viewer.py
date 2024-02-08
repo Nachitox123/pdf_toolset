@@ -204,27 +204,27 @@ thumbnail_panel.bind("<MouseWheel>", lambda event: on_mousewheel(event, thumbnai
 
 # Frame for arrows, input, and label
 nav_frame = tk.Frame(window, width=300)
-nav_frame.grid(row=2, column=0, padx=(10, 0), pady=(5, 5))
+nav_frame.grid(row=2, column=0, padx=15, pady=5)
 
 # Integer input entry
 entry_integer = tk.Entry(nav_frame, width=6)
-entry_integer.grid(row=0, column=0, padx=(20, 30))
+entry_integer.grid(row=0, column=0, sticky="e")
 entry_integer.insert(0, 0)
 
 # Label for pages
 pages_label = tk.Label(nav_frame, text=f"/ {total_pages}")
-pages_label.grid(row=0, column=0, columnspan=2, padx=(40, 0))
+pages_label.grid(row=0, column=1, sticky="w")
 
 # Change page buttons
 btn_previous = tk.Button(nav_frame, text="Previous", command=previous_page)
-btn_previous.grid(row=1, column=0)#, padx=(20, 50))
+btn_previous.grid(row=1, column=0)
 
 btn_next = tk.Button(nav_frame, text="Next", command=next_page)
-btn_next.grid(row=1, column=1)#0, columnspan=2, padx=(70, 0))
+btn_next.grid(row=1, column=1)
 
 # Canvas for display
 display_panel = tk.Canvas(window, width=0, bg="gray", scrollregion=(0, 0, 0, 0))
-display_panel.grid(row=0, column=2, rowspan=3, sticky="nsew") # Might change to rowspan=2
+display_panel.grid(row=0, column=2, rowspan=3, sticky="nsew")
 
 # Scrollbar for display
 display_scrollbar_x = tk.Scrollbar(window, orient="horizontal", command=display_panel.xview)
